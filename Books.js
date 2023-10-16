@@ -12,11 +12,12 @@ class Library {
     this.books = [];
   }
 
-  addBook(book) {
+  addBook() {
     const bookNr = this.books.length + 1;
-    book.title = "title-" + bookNr.toString().padStart(3, "0");
-    book.pages = 50 + Math.floor(950 * Math.random());
-    book.author = getRandomStr();
+    const title = "title-" + bookNr.toString().padStart(3, "0");
+    const pages = 50 + Math.floor(950 * Math.random());
+    const author = getRandomStr();
+    const book = new Book (title, author, pages);
     this.books.push(book);
   }
 
@@ -62,16 +63,12 @@ const bookData = [
 
 const myLibrary = new Library("Your Name");
 
-for (const data of bookData) {
-  const book = new Book(data.title, data.author, data.pages);
-  myLibrary.addBook(book);
-}
+for (let i = 0; i < 10; i++){
+myLibrary.addBook();
+};
 
 console.log("Total pages in library: " + myLibrary.totalPages());
 console.log("Total books in library: " + myLibrary.totalBooks());
 console.log("Average pages per book: " + myLibrary.averagePagesPerBook());
-
-const newBook = new Book("My New Book", "John Doe", 300);
-myLibrary.addBook(newBook);
 
 console.log (myLibrary);
